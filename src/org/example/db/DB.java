@@ -29,6 +29,18 @@ public class DB {
         return conn;
     }
 
+    public static void closeConection(){
+        if(conn != null){
+            try {
+                conn.close();
+            }
+            catch (SQLException e){
+                throw new BdException(e.getMessage());
+            }
+
+        }
+    }
+
     public static Properties loadProperties(){
         try(FileInputStream fs = new FileInputStream("db.properties")){
             Properties props = new Properties();
